@@ -6,14 +6,16 @@ import { getApiKey } from './utils/getApiKey';
 import WeatherCard from './components/WeatherCard';
 import Background from './components/Background';
 import Loading from './components/Loading';
-
+import SearchCountryForm from './components/SearchCountryForm';
 function App() {
 
 	const [coords, setCoords] = useState();
 	const [weather, setWeather] = useState();
 	const [icon, setIcon] = useState();
 	const [temp, setTemp] = useState();
-	
+	const [search, setSearch] = useState(false);
+	const [inputValue, setInputValue] = useState('')
+		
 	
 	useEffect(() => {
 		const success = pos => {
@@ -27,7 +29,11 @@ function App() {
 
 	useEffect(() => {
 		if (coords) {
-			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}`
+			const url = 
+			// search
+			// 				? `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${getApiKey()}`
+			// 				: 
+							`https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}`;
 			axios.get(url)
 				.then(res => {
 					setWeather(res.data)
@@ -40,7 +46,7 @@ function App() {
 				})
 				.catch(err => console.error(err))
 		}
-	}, [coords])
+	}, [coords, inputValue, search])
 	
 	
 	useEffect(() => {
@@ -51,6 +57,9 @@ function App() {
 			bg_HTML.style.backgroundImage = `url(${bg})`;
 		}
 	}, [weather, icon])
+	
+	console.log(inputValue);
+	console.log(search);
 
 	return (
 		<>
@@ -59,6 +68,7 @@ function App() {
 					? 
 					<>
 						<Background />
+						<SearchCountryForm setInputValue={setInputValue} setSearch={setSearch} search={search} />
 						<WeatherCard 
 							weather={weather}
 							temp={temp}
