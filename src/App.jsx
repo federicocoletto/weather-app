@@ -49,9 +49,9 @@ function App() {
 				})
 				.catch(err => {
 					console.error(err)
-					return (
-						<div>{inputValue} not valid</div>
-					)
+					// ? return (
+					// ?	<div>{inputValue} not valid</div>
+					// ? )
 				})
 		}
 	}, [coords, inputValue, search])
