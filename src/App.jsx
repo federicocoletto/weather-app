@@ -5,12 +5,14 @@ import axios from 'axios';
 import { getApiKey } from './utils/getApiKey';
 import WeatherCard from './components/WeatherCard';
 import Background from './components/Background';
+import Loading from './components/Loading';
 
 function App() {
 
 	const [coords, setCoords] = useState();
 	const [weather, setWeather] = useState();
 	const [icon, setIcon] = useState();
+	const [temp, setTemp] = useState();
 	
 	
 	useEffect(() => {
@@ -25,9 +27,17 @@ function App() {
 
 	useEffect(() => {
 		if (coords) {
-			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}&units=metric`
+			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}`
 			axios.get(url)
-				.then(res => setWeather(res.data))
+				.then(res => {
+					setWeather(res.data)
+					const objTemp = {
+						celsius: +((res.data.main.temp) - 273.15).toFixed(1),
+						fahrenheit: +(1.8 * (res.data.main.temp - 273) + 32).toFixed(1),
+
+					}
+					setTemp(objTemp)
+				})
 				.catch(err => console.error(err))
 		}
 	}, [coords])
@@ -41,14 +51,21 @@ function App() {
 			bg_HTML.style.backgroundImage = `url(${bg})`;
 		}
 	}, [weather, icon])
-			
-	
-	
-	
+
 	return (
 		<>
-			<Background />
-			<WeatherCard weather={weather}/>
+			{
+				weather 
+					? 
+					<>
+						<Background />
+						<WeatherCard 
+							weather={weather}
+							temp={temp}
+						/>
+					</>
+					: <Loading />					
+			}
 		</>
 	)
 }
