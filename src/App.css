@@ -64,7 +64,7 @@ header {
 	height: 20vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	place-self: center;
 	gap: 1em;
 	width: 80%;
@@ -93,7 +93,7 @@ header > h2 {
 .weather-img {
 	width: 80%;
 	border-bottom: 2px solid var(--light-shadow);
-	place-self: start center;
+	place-self: center;
 	padding-bottom: 40px;
 }
 
@@ -146,8 +146,9 @@ li.wind {
 		justify-content: center;
 	}
 	header {
-		display: block;
 		width: 100%;
+		place-self: center;
+		justify-content: center;
 	}
 	
 	header > h2 {
@@ -157,8 +158,9 @@ li.wind {
 	.weather-img {
 		width: 100%;
 		border-bottom: 2px solid var(--light-shadow);
-		place-self: center;
 		border: none;
+		place-self: center;
+		padding: 0;
 	}
 
 }
