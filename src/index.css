@@ -54,3 +54,22 @@ h1, h2, h3, h4, h5, h6, p {
 	text-shadow: 1px 2px 5px var(--dark-shadow);
 }
 
+h2, h3, h5 {
+	color: var(--light-pink)
+}
+
+input {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1rem;
+} 
+
+i {
+	color: var(--dark-pink);
+	font-size: 1.2rem;
+}
+
+button {
+	font-weight: bold;
+	font-family: 'Poppins', sans-serif;
+	border: none;
+}

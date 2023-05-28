@@ -6,7 +6,8 @@ import { getApiKey } from './utils/getApiKey';
 import WeatherCard from './components/WeatherCard';
 import Background from './components/Background';
 import Loading from './components/Loading';
-import SearchCountryForm from './components/SearchCountryForm';
+import SearchCountryForm from './components/searchCountryForm';
+
 function App() {
 
 	const [coords, setCoords] = useState();
@@ -27,13 +28,15 @@ function App() {
 		navigator.geolocation.getCurrentPosition(success)
 	}, [])
 
+    console.log(search);
+
+
 	useEffect(() => {
 		if (coords) {
 			const url = 
-			// search
-			// 				? `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${getApiKey()}`
-			// 				: 
-							`https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}`;
+						search
+							? `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${getApiKey()}`
+							: `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${getApiKey()}`;
 			axios.get(url)
 				.then(res => {
 					setWeather(res.data)
@@ -44,7 +47,12 @@ function App() {
 					}
 					setTemp(objTemp)
 				})
-				.catch(err => console.error(err))
+				.catch(err => {
+					console.error(err)
+					return (
+						<div>{inputValue} not valid</div>
+					)
+				})
 		}
 	}, [coords, inputValue, search])
 	

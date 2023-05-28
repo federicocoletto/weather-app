@@ -1,24 +1,17 @@
-import { useState } from "react";
-
 /* eslint-disable react/prop-types */
-const SearchCountryForm = ({setInputValue}) => {
-
-    const [search, setSearch] = useState(false);
+const SearchCountryForm = ({setInputValue, setSearch}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setInputValue(e.target.searchCountry.value.trim());
-        setSearch(!search);
-        console.log(search);
+        setSearch(true);
     }
 
     return (
-        <div className="searchCountryForm">
-            <form onSubmit={handleSubmit}>
-                <input type="text" id="searchCountry" />
-                <button>Search</button>
-            </form>
-        </div>
+        <form className="searchCountryForm" onSubmit={handleSubmit}>
+            <input type="text" id="searchCountry" />
+            <button><i className="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     )
 }
 
