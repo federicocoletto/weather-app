@@ -25,7 +25,8 @@
 	letter-spacing: 1px;
 	border: none;
 	border-radius: .3em;
-	background-color: var(--dark-pink);
+	background-color: var(--dark-blue);
+	color: var(--light-white);
 }
 
 .searchCountryForm > button {
@@ -83,11 +84,13 @@ header > h2 {
 	font-weight: bold;
 	border-radius: .5em;
 	box-shadow: 2px 2px 5px #0009;
-	background-color: var(--light-pink);
+	background-color: var(--light-blue);
+	transition: background-color .5s, color .5s;
 }
 
 .units-btn:hover {
-	background-color: var(--dark-pink);
+	background-color: var(--dark-blue);
+	color: var(--light-white);
 }
 
 .weather-img {

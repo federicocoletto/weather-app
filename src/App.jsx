@@ -6,7 +6,7 @@ import { getApiKey } from './utils/getApiKey';
 import WeatherCard from './components/WeatherCard';
 import Background from './components/Background';
 import Loading from './components/Loading';
-import SearchCountryForm from './components/SearchCountryForm';
+import SearchCountryForm from './components/searchCountryForm';
 
 function App() {
 
@@ -15,7 +15,8 @@ function App() {
 	const [icon, setIcon] = useState();
 	const [temp, setTemp] = useState();
 	const [search, setSearch] = useState(false);
-	const [inputValue, setInputValue] = useState('')
+	const [inputValue, setInputValue] = useState('');
+	const [hasError, setHasError] = useState(false)
 		
 	
 	useEffect(() => {
@@ -27,9 +28,6 @@ function App() {
 		}
 		navigator.geolocation.getCurrentPosition(success)
 	}, [])
-
-    console.log(search);
-
 
 	useEffect(() => {
 		if (coords) {
@@ -43,19 +41,15 @@ function App() {
 					const objTemp = {
 						celsius: +((res.data.main.temp) - 273.15).toFixed(1),
 						fahrenheit: +(1.8 * (res.data.main.temp - 273) + 32).toFixed(1),
-
 					}
 					setTemp(objTemp)
+					setHasError(false)
 				})
 				.catch(err => {
-					console.error(err)
-					// ? return (
-					// ?	<div>{inputValue} not valid</div>
-					// ? )
+					setHasError(true)
 				})
 		}
 	}, [coords, inputValue, search])
-	
 	
 	useEffect(() => {
 		if (weather) {
@@ -66,23 +60,25 @@ function App() {
 		}
 	}, [weather, icon])
 	
-	console.log(inputValue);
-	console.log(search);
 
 	return (
 		<>
 			{
-				weather 
+				hasError
+				? <h1 className='error-msg'>`${inputValue}` is not a valid country</h1>
+				: weather 
 					? 
 					<>
 						<Background />
-						<SearchCountryForm setInputValue={setInputValue} setSearch={setSearch} search={search} />
+						<SearchCountryForm 
+							setInputValue={setInputValue} 
+							setSearch={setSearch} 
+							search={search} />
 						<WeatherCard 
 							weather={weather}
-							temp={temp}
-						/>
+							temp={temp} />
 					</>
-					: <Loading />					
+					: <Loading />			
 			}
 		</>
 	)

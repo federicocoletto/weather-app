@@ -54,9 +54,15 @@ h1, h2, h3, h4, h5, h6, p {
 	text-shadow: 1px 2px 5px var(--dark-shadow);
 }
 
-h2, h3, h5 {
-	color: var(--light-pink)
+h1.error-msg {
+	background-color: #23263A;
+	padding-left: .5em;
 }
+
+h2, h3, h5 {
+	color: var(--light-blue)
+}
+
 
 input {
 	font-family: 'Poppins', sans-serif;
@@ -64,7 +70,7 @@ input {
 } 
 
 i {
-	color: var(--dark-pink);
+	color: var(--dark-blue);
 	font-size: 1.2rem;
 }
 
@@ -73,3 +79,4 @@ button {
 	font-family: 'Poppins', sans-serif;
 	border: none;
 }
+
