@@ -6,7 +6,7 @@ import { getApiKey } from './utils/getApiKey';
 import WeatherCard from './components/WeatherCard';
 import Background from './components/Background';
 import Loading from './components/Loading';
-import SearchCountryForm from './components/searchCountryForm';
+import SearchCountryForm from './components/SearchCountryForm';
 
 function App() {
 
