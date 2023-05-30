@@ -25,8 +25,6 @@
 	letter-spacing: 1px;
 	border: none;
 	border-radius: .3em;
-	background-color: var(--dark-blue);
-	color: var(--light-white);
 }
 
 .searchCountryForm > button {
@@ -38,6 +36,16 @@
 	border: none;
 }
 
+/* body.celcius-mode > .searchCountryForm > input {
+	background-color: var(--dark-blue);
+	color: var(--light-white);
+}
+
+body.celcius-mode.fahrenheit-mode > .searchCountryForm > input {
+	background-color: var(--dark-pink);
+	color: var(--black);
+} */
+
 .card {
 	position: fixed;
 	top: 50%;
@@ -46,9 +54,6 @@
 	min-height: 80vh;
 	width: 80vw;
 	max-width: 400px;
-	background-color: var(--black);
-	color: var(--light-white);
-	opacity: .8;
 	border-radius: .4em;
 	box-shadow: 4px 8px 40px var(--light-shadow);
 	
@@ -56,9 +61,16 @@
 	align-items: center;
 	text-align: center;
 }
-.card > *, 
-.card-img > * {
-	opacity: 1;
+
+body.celcius-mode .card {
+	background-color: var(--dark-bg-transparent);
+	color: var(--light-white);
+	transition: background-color .5s;
+}
+
+body.celcius-mode.fahrenheit-mode .card {
+	background-color: var(--light-bg-transparent);
+	color: var(--black);
 }
 
 header {

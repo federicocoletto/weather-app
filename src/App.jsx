@@ -16,7 +16,8 @@ function App() {
 	const [temp, setTemp] = useState();
 	const [search, setSearch] = useState(false);
 	const [inputValue, setInputValue] = useState('');
-	const [hasError, setHasError] = useState(false)
+	const [hasError, setHasError] = useState(false);
+	const [mode, setMode] = useState('celcius')
 		
 	
 	useEffect(() => {
@@ -76,7 +77,9 @@ function App() {
 							search={search} />
 						<WeatherCard 
 							weather={weather}
-							temp={temp} />
+							temp={temp}
+							setMode={setMode}
+							mode={mode} />
 					</>
 					: <Loading />			
 			}

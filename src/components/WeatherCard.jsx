@@ -2,12 +2,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 
-const WeatherCard = ({weather, temp}) => {
+const WeatherCard = ({weather, temp, mode}) => {
 
     const [tempUnits, setTempUnits] = useState(true);
-
+    const body = document.querySelector('body');
+    
     const handleTemp = () => {
         setTempUnits(!tempUnits)
+        const mode = tempUnits ? 'celcuis' : 'fahrenheit';
+        body.classList.toggle(`fahrenheit-mode`)            
+        
+        console.log(mode);
     }
 
     return (

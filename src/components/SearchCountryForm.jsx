@@ -9,12 +9,19 @@ const SearchCountryForm = ({setInputValue, setSearch}) => {
         e.preventDefault();
         setInputValue(inputSearch.current.value.trim());
         setSearch(true);
+        
+        // if (mode === 'celcuis') {
+        //     setMode('fahrenheit')
+        //     document.querySelectorAll('.celcius-mode').classList.add(`${mode}-mode`)            
+        // }
     }
 
     return (
         <form className="searchCountryForm" onSubmit={handleSubmit}>
-            <input type="text" ref={inputSearch} />
-            <button><i className="fa-solid fa-magnifying-glass"></i></button>
+            <input 
+                type="text" 
+                ref={inputSearch} />
+            <button><i className="fa-solid fa-magnifying-glass celcuis-mode"></i></button>
         </form>
     )
 }
